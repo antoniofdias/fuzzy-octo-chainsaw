@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   # get "up" => "rails/health#show", as: :rails_health_check
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :movies, only: [:index, :new, :create]
+  resources :movies, only: [:index, :new, :create] do
+    collection do
+      post 'create_multiple'
+    end
+  end
   resources :user_movies, only: [:create, :update]
 
   get '/login', to: 'sessions#new'

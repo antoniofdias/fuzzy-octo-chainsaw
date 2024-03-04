@@ -22,6 +22,12 @@ class MoviesController < ApplicationController
     end
   end
 
+  def create_multiple
+    movie_data = params.require(:movie_data).map { |movie| movie.permit(:title, :director) }
+    MovieCreatorService.create_movies(movie_data)
+    redirect_to movies_path, notice: "Movies were successfully created."
+  end
+
   private
 
   def movie_params
