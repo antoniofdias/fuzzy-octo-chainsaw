@@ -23,9 +23,9 @@ class MoviesController < ApplicationController
   end
 
   def create_multiple
-    movie_data = params.require(:movie_data).map { |movie| movie.permit(:title, :director) }
-    MovieCreatorService.create_movies(movie_data)
-    redirect_to movies_path, notice: "Movies were successfully created."
+    movie_data = params.require(:movie_data).map { |movie| movie.permit(:title, :director).to_h }
+    MovieCreatorWorker.perform_async(movie_data.as_json)
+    redirect_to movies_path, notice: "Movies will be created in the background."
   end
 
   private

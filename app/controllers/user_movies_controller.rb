@@ -17,8 +17,8 @@ class UserMoviesController < ApplicationController
 
   def rate_multiple
     user_id = current_user.id
-    movie_data = params.require(:movie_data).map { |movie| movie.permit(:score, :movie_id) }
-    UserMovieCreatorService.rate_movies(user_id, movie_data)
-    redirect_to movies_path, notice: "Movies were successfully rated."
-  end
+    movie_data = params.require(:movie_data).map { |movie| movie.permit(:score, :movie_id).to_h }
+    UserMovieCreatorWorker.perform_async(user_id, movie_data.as_json)
+    redirect_to movies_path, notice: "Movies will be rated in the background."
+  end  
 end

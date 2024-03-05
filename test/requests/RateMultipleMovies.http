@@ -4,12 +4,12 @@ content-type: application/json
 {
   "movie_data": [
     {
-      "score": "3",
-      "movie_id": "2"
+      "score": 3,
+      "movie_id": 2
     },
     {
-      "score": "4",
-      "movie_id": "6"
+      "score": 4,
+      "movie_id": 6
     }
   ]
 }
