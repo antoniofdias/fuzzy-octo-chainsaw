@@ -1,0 +1,15 @@
+POST http://127.0.0.1:3000/movies/create_multiple
+content-type: application/json
+
+{
+  "movie_data": [
+    {
+      "director": "Frances Herbert",
+      "title": "Dune 6"
+    },
+    {
+      "director": "Frances Herbert",
+      "title": "Dune 7"
+    }
+  ]
+}

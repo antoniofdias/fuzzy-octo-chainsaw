@@ -11,7 +11,11 @@ Rails.application.routes.draw do
       post 'create_multiple'
     end
   end
-  resources :user_movies, only: [:create, :update]
+  resources :user_movies, only: [:create, :update] do
+    collection do
+      post 'rate_multiple'
+    end
+  end
 
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'

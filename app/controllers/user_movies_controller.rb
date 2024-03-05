@@ -14,4 +14,11 @@ class UserMoviesController < ApplicationController
     @user_movie.update(score: params[:user_movie][:score])
     redirect_to movies_path
   end
+
+  def rate_multiple
+    user_id = current_user.id
+    movie_data = params.require(:movie_data).map { |movie| movie.permit(:score, :movie_id) }
+    UserMovieCreatorService.rate_movies(user_id, movie_data)
+    redirect_to movies_path, notice: "Movies were successfully rated."
+  end
 end

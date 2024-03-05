@@ -1,0 +1,15 @@
+POST http://127.0.0.1:3000/user_movies/rate_multiple
+content-type: application/json
+
+{
+  "movie_data": [
+    {
+      "score": "3",
+      "movie_id": "2"
+    },
+    {
+      "score": "4",
+      "movie_id": "6"
+    }
+  ]
+}
