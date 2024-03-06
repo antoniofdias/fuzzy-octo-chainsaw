@@ -24,4 +24,4 @@ An Rails application will be configured with the following features:
 
 Lastly, you will need to have a redis instance running (see the [docs](https://redis.io/docs/)), run sidekiq with the command `bundle exec sidekiq` and the rails server with `rails s -b 127.0.0.1`.
 
-On the folder `test/requests` it is possible to visualize a few examples of the expected input on the created routes. The user can also create a massive json by running the `createMassiveJSON.py` python script located on the main folder.
+On the folder `test/requests` it is possible to visualize a few examples of the expected input on the created routes. The user can also create a massive json by running the `createMassiveJSON.py` python script located on the main folder. To run tests with `rspec` you may execute the instruction `rspec` on the root folder of the project.

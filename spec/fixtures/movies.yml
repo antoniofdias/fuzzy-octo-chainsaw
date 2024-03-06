@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+inception:
+  title: Inception
+  director: Christopher Nolan
+
+dune:
+  title: Dune
+  director: Dennis Villenauve

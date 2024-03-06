@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.to_a
     respond_to do |format|
       format.html
       format.json { render json: @movies.to_json(methods: :average_score) }
@@ -24,8 +24,14 @@ class MoviesController < ApplicationController
 
   def create_multiple
     movie_data = params.require(:movie_data).map { |movie| movie.permit(:title, :director).to_h }
-    MovieCreatorWorker.perform_async(movie_data.as_json)
-    redirect_to movies_path, notice: "Movies will be created in the background."
+    response = MovieCreatorWorker.create(movie_data)
+    respond_to do |format|
+      format.json { render json: response.as_json, status: :ok }
+    end
+  rescue StandardError => e
+    respond_to do |format|
+      format.json { render json: e.message, status: :unprocessable_entity }
+    end
   end
 
   private
